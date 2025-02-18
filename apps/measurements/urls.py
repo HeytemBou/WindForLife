@@ -4,12 +4,12 @@ from rest_framework.routers import DefaultRouter
 # Django imports
 from django.urls import path, include
 
-from apps.anemometers.api.v1.viewsets import AnemometerViewSet
+from apps.measurements.api.v1.viewsets import MeasurementViewSet
 
-############################## Router for User Management API ##############################
+############################## Router for Measurements app ##############################
 
 router = DefaultRouter(trailing_slash=False)
-router.register('v1/measurements', AnemometerViewSet, basename='measurement')
+router.register('v1/measurements', MeasurementViewSet, basename='measurement')
 
 urlpatterns = [
     path('', include(router.urls)),

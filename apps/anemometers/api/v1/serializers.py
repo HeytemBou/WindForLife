@@ -2,14 +2,15 @@
 from django.shortcuts import get_object_or_404
 
 # local imports
-from apps.anemometers.models import Anemometer, AnemometerTag
-from apps.measurements.models import Measurement
+from apps.anemometers.models.anemometer import Anemometer
+from apps.anemometers.models.anemometer_tag import  AnemometerTag
+from apps.measurements.models.measurement import Measurement
 
 # rest framework imports
 from rest_framework import serializers
 
 # Validators
-from apps.anemometers.api.v1.validators import validate_longitude, validate_latitude, validate_elevation, validate_anemometer_name, validate_anemometer_tags, validate_limit, validate_offset
+from apps.anemometers.api.v1.validators import validate_longitude, validate_altitude, validate_latitude, validate_anemometer_name, validate_anemometer_tags
 
 
 class GenericAnemometerSerializer(serializers.ModelSerializer):
@@ -18,14 +19,14 @@ class GenericAnemometerSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Anemometer
-        fields = ['id', 'name', 'tags', 'measurement_unit', 'latitude', 'longitude', 'elevation']
+        fields = ['id', 'name', 'tags', 'latitude', 'longitude', 'altitude']
         read_only_fields = ['id']
         extra_kwargs = {
             'name': {'validators': [validate_anemometer_name]},
             'tags': {'validators': [validate_anemometer_tags]},
             'latitude': {'validators': [validate_latitude]},
             'longitude': {'validators': [validate_longitude]},
-            'elevation': {'validators': [validate_elevation]}
+            'altitude': {'validators': [validate_altitude]}
         }
     
     def to_representation(self, instance):
@@ -36,10 +37,9 @@ class GenericAnemometerSerializer(serializers.ModelSerializer):
             'id': instance.id,
             'name': instance.name,
             'tags': instance.tags,
-            'measurement_unit': instance.measurement_unit,
             'latitude': instance.latitude,
             'longitude': instance.longitude,
-            'elevation': instance.elevation
+            'altitude': instance.altitude
         }
 
 
@@ -53,13 +53,13 @@ class AnemometerCreateSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = Anemometer
-        fields = ['name', 'tags', 'measurement_unit', 'latitude', 'longitude', 'elevation']
+        fields = ['name', 'tags', 'latitude', 'longitude', 'altitude']
         extra_kwargs = {
             'name': {'validators': [validate_anemometer_name]},
             'tags': {'validators': [validate_anemometer_tags]},
             'latitude': {'validators': [validate_latitude]},
             'longitude': {'validators': [validate_longitude]},
-            'elevation': {'validators': [validate_elevation]}
+            'altitude': {'validators': [validate_altitude]}
         }
 
     def create(self, validated_data):
@@ -72,8 +72,6 @@ class AnemometerCreateSerializer(serializers.ModelSerializer):
         if tags:
             for tag_name in tags:
                 tag, created = AnemometerTag.objects.get_or_create(name=tag_name)
-                print(created)
-                print(tag)
                 anemometer.tags.add(tag)
         return anemometer
 
@@ -84,13 +82,13 @@ class AnemometerUpdateSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Anemometer
-        fields = ['name', 'tags', 'measurement_unit', 'latitude', 'longitude', 'elevation']
+        fields = ['name', 'tags', 'latitude', 'longitude', 'elevation']
         extra_kwargs = {
             'name': {'validators': [validate_anemometer_name]},
             'tags': {'validators': [validate_anemometer_tags]},
             'latitude': {'validators': [validate_latitude]},
             'longitude': {'validators': [validate_longitude]},
-            'elevation': {'validators': [validate_elevation]}
+            'elevation': {'validators': [validate_altitude]}
         }
 
     def update(self, instance, validated_data):
@@ -98,10 +96,9 @@ class AnemometerUpdateSerializer(serializers.ModelSerializer):
         Update and return an existing `Anemometer` instance, given the validated data.
         """
         instance.name = validated_data.get('name', instance.name)
-        instance.measurement_unit = validated_data.get('measurement_unit', instance.measurement_unit)
         instance.latitude = validated_data.get('latitude', instance.latitude)
         instance.longitude = validated_data.get('longitude', instance.longitude)
-        instance.elevation = validated_data.get('elevation', instance.elevation)
+        instance.elevation = validated_data.get('altitude', instance.elevation)
         tags = validated_data.get('tags').split(',')
         anemometer = instance.save()
         if tags:
@@ -162,7 +159,7 @@ class AnemometerMeasurementSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Measurement
-        fields = ['id', 'anemometer', 'wind_speed', 'timestamp']
+        fields = ['id','anemometer', 'wind_speed', 'timestamp']
         read_only_fields = ['id']
         extra_kwargs = {
             'anemometer': {'required': True},
@@ -175,9 +172,9 @@ class AnemometerMeasurementSerializer(serializers.ModelSerializer):
         Create and return a new `Measurement` instance, given the validated data.
         """
         # First check if the anemometer exists, if it doesn't, raise a 404 error
-        anemometer = get_object_or_404(Anemometer, id=validated_data.get('anemometer'))
-        validated_data['anemometer'] = anemometer
-        
+        anemometer = get_object_or_404(Anemometer, id=validated_data.get('anemometer').id)
+        if not anemometer:
+            raise serializers.ValidationError('Anemometer does not exist')
         return Measurement.objects.create(**validated_data)
     
     def to_representation(self, instance):

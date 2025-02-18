@@ -7,7 +7,7 @@ from .models.anemometer_tag import AnemometerTag
 
 
 class AnemometerAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'measurement_unit', 'latitude', 'longitude', 'elevation')
+    list_display = ('id', 'name', 'latitude', 'longitude', 'altitude')
 
 
 admin.site.register(Anemometer, AnemometerAdmin)

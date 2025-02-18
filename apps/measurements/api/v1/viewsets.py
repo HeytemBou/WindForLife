@@ -10,10 +10,10 @@ from rest_framework.decorators import action
 # Usecase imports
 from apps.measurements.api.v1.services.measurements_stats_usecase import MeasurementsStatsUseCase
 from apps.measurements.api.v1.services.get_measurements_by_tags import MeasurementsByTagsUseCase
+from apps.measurements.api.v1.services.get_stats_within_area import StatsWithinAreaUseCase
 
 # Local imports
-from apps.measurements.models import Measurement
-from apps.anemometers.models import Anemometer
+from apps.measurements.models.measurement import Measurement
 
 # Utils imports
 from utils.security.jwt_authentication import JWTAuthentication
@@ -58,12 +58,47 @@ class MeasurementViewSet(viewsets.ModelViewSet):
         # Get the tags from the request query params
         tags: list[str] = request.query_params.get('tags', None)
         # Inject the tags into the request data
-        request.data['tags'] = tags
+        # Create a mutable copy of request.data
+        data = request.data.copy()
+
+        # Add the tags to the request data
+        data['tags'] = tags.split(',') if tags else []
 
         # instantiate the usecase
-        usecase = MeasurementsByTagsUseCase(request)
+        usecase = MeasurementsByTagsUseCase(data)
         # Execute the usecase and get the response
         response: Response = usecase.execute()
         return response
+    
+    # Custom action endpoint to get wind speed measuremments stats within a given area defined by a central point and a radius
+    @action(methods=['get'], url_path="stats-within-area", detail=False, authentication_classes=[JWTAuthentication])
+    def stats_within_area(self, request):
+        """
+        API to get the statistics of measurements within a given area defined by a central point and a radius
+        """
+        # Get the latitude, longitude and radius from the request query params
+        latitude: str = request.query_params.get('latitude', None)
+        longitude: str = request.query_params.get('longitude', None)
+        radius: str = request.query_params.get('radius', None)
 
-    # Custom action endpoint to
+        # convert the strings to floats
+        try:
+            latitude = float(latitude)
+            longitude = float(longitude)
+            radius = float(radius)
+        except ValueError:
+            return Response({"error": "Latitude, longitude and radius should be numbers"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create a mutable copy of request.data
+        data = request.data.copy()
+
+        # Inject the latitude, longitude and radius into the request data
+        data['latitude'] = latitude
+        data['longitude'] = longitude
+        data['radius'] = radius
+
+        # Instantiate the usecase
+        usecase = StatsWithinAreaUseCase(data)
+        # Execute the usecase and get the response
+        response: Response = usecase.execute()
+        return response

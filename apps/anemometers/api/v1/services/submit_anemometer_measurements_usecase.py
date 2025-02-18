@@ -14,9 +14,9 @@ class AnemometerMeasurementsUseCase:
     """
     Usecase class that contains the logic to create an anemometer
     """
-    def __init__(self, request: HttpRequest):
-        self.request = request
-        self.serializer = AnemometerMeasurementSerializer(data=request.data)
+    def __init__(self, request_data: dict):
+        self.request_data = request_data
+        self.serializer = AnemometerMeasurementSerializer(data=request_data)
 
     def execute(self) -> Response:
 
@@ -27,7 +27,7 @@ class AnemometerMeasurementsUseCase:
         # Create the anemometer
         self.serializer.save()
 
-        return Response(self.serializer.data, status=status.HTTP_201_CREATED)
+        return Response("Wind measurement submitted successfully", status=status.HTTP_201_CREATED)
 
 
         

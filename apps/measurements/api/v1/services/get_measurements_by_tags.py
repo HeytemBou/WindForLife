@@ -14,8 +14,7 @@ from rest_framework.serializers import Serializer
 from apps.anemometers.api.v1.serializers import AnemometerMeasurementSerializer
 
 # Models
-from apps.anemometers.models import Anemometer, AnemometerTag
-from apps.measurements.models import Measurement
+from apps.measurements.models.measurement import Measurement
 
 
 class MeasurementsByTagsUseCase:
@@ -23,14 +22,15 @@ class MeasurementsByTagsUseCase:
     Usecase class that contains the logic to retrieve anemometer measurements filterd by a set of tags
     """
 
-    def __init__(self, request: HttpRequest, serializer: Optional[Serializer] = None):
-        self.request = request
+    def __init__(self, request_data: dict, serializer: Optional[Serializer] = None):
+        self.request_data = request_data
         self.serializer = serializer
 
     def execute(self) -> Response:
 
         # Get the tags from the request
-        tags = self.request.data.get('tags', [])
+        tags = self.request_data.get('tags', [])
+        print(tags)
 
         if not tags:
             return Response({"error": "No tags provided"}, status=status.HTTP_400_BAD_REQUEST)
