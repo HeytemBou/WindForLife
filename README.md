@@ -32,13 +32,17 @@ For testing these endpoints locally, you can import the provided postman collect
     ```bash
     poetry install
     ```
-3. Apply migrations:
+3. Activate the env
     ```bash
-    poetry run python manage.py migrate
+    poetry shell
     ```
-4. Run the development server:
+4. Apply migrations:
     ```bash
-    poetry run python manage.py runserver
+    python manage.py migrate
+    ```
+5. Run the development server:
+    ```bash
+    python manage.py runserver
     ```
 
 ### Using Docker
