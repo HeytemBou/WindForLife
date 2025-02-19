@@ -1,0 +1,602 @@
+{
+	"info": {
+		"_postman_id": "7d41d4b0-2966-49c8-915f-bcfd130ded05",
+		"name": "wind for life",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21661254"
+	},
+	"item": [
+		{
+			"name": "CRUD",
+			"item": [
+				{
+					"name": "create anemometer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiAiSFM1MTIiLCAidHlwIjogIkpXVCJ9.eyJyZWdpc3RlcmVkX2NsYWltcyI6IHsiaXNzIjogIldpbmRGb3JMaWZlIiwgInN1YiI6ICJXaW5kRm9yTGlmZV9hcGkiLCAiZXhwIjogMTc0MDQzMzIyMS4wMTg1MzR9LCAicHJpdmF0ZV9jbGFpbXMiOiB7ImFpZCI6ICIzODk3ZjNhMS00OGNlLTRiY2YtYmRkYi0wODc2ODYwNjVlNWIiLCAidGsiOiAiYWNjIn0sICJwdWJsaWNfY2xhaW1zIjoge319.JDcKnczBND0x9iSNZKYygfnISd0djm0A2Wlvy6XUdwa8qJ9udvvfBeWKYWTtGfyRs3wJVPoGt9K1BqJHkuPzzQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "koshari brother",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "speed,direction",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "elevation",
+									"value": "20",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/anemometers",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"anemometers"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete anemometer",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiAiSFM1MTIiLCAidHlwIjogIkpXVCJ9.eyJyZWdpc3RlcmVkX2NsYWltcyI6IHsiaXNzIjogIldpbmRGb3JMaWZlIiwgInN1YiI6ICJXaW5kRm9yTGlmZV9hcGkiLCAiZXhwIjogMTc0MDQzNTk0MS43MjU3MDJ9LCAicHJpdmF0ZV9jbGFpbXMiOiB7ImFpZCI6ICIzODk3ZjNhMS00OGNlLTRiY2YtYmRkYi0wODc2ODYwNjVlNWIiLCAidGsiOiAiYWNjIn0sICJwdWJsaWNfY2xhaW1zIjoge319.pACzPECOgBvLOOw5-LG1jcDCwl2_1cFo5AlBX37Z3wwY9GvYZBiKXuPQNfnup1ww1g4zK4FyGTqF5p6SawK0AA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/anemometers/cc85e6ca-f399-4e66-adc2-ac0edb0d1934",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"anemometers",
+								"cc85e6ca-f399-4e66-adc2-ac0edb0d1934"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list anemometers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiAiSFM1MTIiLCAidHlwIjogIkpXVCJ9.eyJyZWdpc3RlcmVkX2NsYWltcyI6IHsiaXNzIjogIldpbmRGb3JMaWZlIiwgInN1YiI6ICJXaW5kRm9yTGlmZV9hcGkiLCAiZXhwIjogMTc0MDUyMjk5My42MTg5OTd9LCAicHJpdmF0ZV9jbGFpbXMiOiB7ImFpZCI6ICI3MzRjZjQ0NC05YzYyLTRmNjEtYjY2OC1jNjA5OWU1ZmIzZDEiLCAidGsiOiAiYWNjIn0sICJwdWJsaWNfY2xhaW1zIjoge319.EkUcAo-clKwF7oQm9SbIWXQjY4pt8mYRuZ4luTznCqNjpCDbG83O-mq_Q54INsPJ-QIXYoLCl2bRZzUA4BGoyA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/anemometers",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"anemometers"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "anemometer detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/anemometers/",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"anemometers",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "GenkEthiGroup156..UYUIJNT..DloEth_?",
+									"type": "text"
+								},
+								{
+									"key": "password_confirm",
+									"value": "GenkEthiGroup156..UYUIJNT..DloEth_?",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/accounts/v1/sign-up",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"v1",
+								"sign-up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "GenkEthiGroup156..UYUIJNT..DloEth_?",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/accounts/v1/sign-in",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"accounts",
+								"v1",
+								"sign-in"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Readings",
+			"item": [
+				{
+					"name": "submist readings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiAiSFM1MTIiLCAidHlwIjogIkpXVCJ9.eyJyZWdpc3RlcmVkX2NsYWltcyI6IHsiaXNzIjogIldpbmRGb3JMaWZlIiwgInN1YiI6ICJXaW5kRm9yTGlmZV9hcGkiLCAiZXhwIjogMTc0MDQzMzIyMS4wMTg1MzR9LCAicHJpdmF0ZV9jbGFpbXMiOiB7ImFpZCI6ICIzODk3ZjNhMS00OGNlLTRiY2YtYmRkYi0wODc2ODYwNjVlNWIiLCAidGsiOiAiYWNjIn0sICJwdWJsaWNfY2xhaW1zIjoge319.JDcKnczBND0x9iSNZKYygfnISd0djm0A2Wlvy6XUdwa8qJ9udvvfBeWKYWTtGfyRs3wJVPoGt9K1BqJHkuPzzQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "wind_speed",
+									"value": "12334",
+									"type": "text"
+								},
+								{
+									"key": "timestamp",
+									"value": "2014-12-01",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/anemometers/ed3c343f-ee6b-45b1-9662-ca7afca4be36/measurements",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"anemometers",
+								"ed3c343f-ee6b-45b1-9662-ca7afca4be36",
+								"measurements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "daily/weekly readings",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiAiSFM1MTIiLCAidHlwIjogIkpXVCJ9.eyJyZWdpc3RlcmVkX2NsYWltcyI6IHsiaXNzIjogIldpbmRGb3JMaWZlIiwgInN1YiI6ICJXaW5kRm9yTGlmZV9hcGkiLCAiZXhwIjogMTc0MDUyMjk5My42MTg5OTd9LCAicHJpdmF0ZV9jbGFpbXMiOiB7ImFpZCI6ICI3MzRjZjQ0NC05YzYyLTRmNjEtYjY2OC1jNjA5OWU1ZmIzZDEiLCAidGsiOiAiYWNjIn0sICJwdWJsaWNfY2xhaW1zIjoge319.EkUcAo-clKwF7oQm9SbIWXQjY4pt8mYRuZ4luTznCqNjpCDbG83O-mq_Q54INsPJ-QIXYoLCl2bRZzUA4BGoyA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "date",
+									"value": "2025-2-18",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/measurements/wind-speed-stats",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"measurements",
+								"wind-speed-stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all measurements",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiAiSFM1MTIiLCAidHlwIjogIkpXVCJ9.eyJyZWdpc3RlcmVkX2NsYWltcyI6IHsiaXNzIjogIldpbmRGb3JMaWZlIiwgInN1YiI6ICJXaW5kRm9yTGlmZV9hcGkiLCAiZXhwIjogMTc0MDUyMjk5My42MTg5OTd9LCAicHJpdmF0ZV9jbGFpbXMiOiB7ImFpZCI6ICI3MzRjZjQ0NC05YzYyLTRmNjEtYjY2OC1jNjA5OWU1ZmIzZDEiLCAidGsiOiAiYWNjIn0sICJwdWJsaWNfY2xhaW1zIjoge319.EkUcAo-clKwF7oQm9SbIWXQjY4pt8mYRuZ4luTznCqNjpCDbG83O-mq_Q54INsPJ-QIXYoLCl2bRZzUA4BGoyA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/anemometers/33b6e2ec-2547-464a-95f6-1100add51782/measurements?limit=3&offset=0&date=2025-02-18",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"anemometers",
+								"33b6e2ec-2547-464a-95f6-1100add51782",
+								"measurements"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "date",
+									"value": "2025-02-18"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get measurements by tags",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiAiSFM1MTIiLCAidHlwIjogIkpXVCJ9.eyJyZWdpc3RlcmVkX2NsYWltcyI6IHsiaXNzIjogIldpbmRGb3JMaWZlIiwgInN1YiI6ICJXaW5kRm9yTGlmZV9hcGkiLCAiZXhwIjogMTc0MDUyMjk5My42MTg5OTd9LCAicHJpdmF0ZV9jbGFpbXMiOiB7ImFpZCI6ICI3MzRjZjQ0NC05YzYyLTRmNjEtYjY2OC1jNjA5OWU1ZmIzZDEiLCAidGsiOiAiYWNjIn0sICJwdWJsaWNfY2xhaW1zIjoge319.EkUcAo-clKwF7oQm9SbIWXQjY4pt8mYRuZ4luTznCqNjpCDbG83O-mq_Q54INsPJ-QIXYoLCl2bRZzUA4BGoyA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/measurements/filter-by-tags?tags=tomato,bird",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"measurements",
+								"filter-by-tags"
+							],
+							"query": [
+								{
+									"key": "tags",
+									"value": "tomato,bird"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get stats within area",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiAiSFM1MTIiLCAidHlwIjogIkpXVCJ9.eyJyZWdpc3RlcmVkX2NsYWltcyI6IHsiaXNzIjogIldpbmRGb3JMaWZlIiwgInN1YiI6ICJXaW5kRm9yTGlmZV9hcGkiLCAiZXhwIjogMTc0MDUyMjk5My42MTg5OTd9LCAicHJpdmF0ZV9jbGFpbXMiOiB7ImFpZCI6ICI3MzRjZjQ0NC05YzYyLTRmNjEtYjY2OC1jNjA5OWU1ZmIzZDEiLCAidGsiOiAiYWNjIn0sICJwdWJsaWNfY2xhaW1zIjoge319.EkUcAo-clKwF7oQm9SbIWXQjY4pt8mYRuZ4luTznCqNjpCDbG83O-mq_Q54INsPJ-QIXYoLCl2bRZzUA4BGoyA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://{{local base url}}/api/v1/measurements/stats-within-area?latitude=70&longitude=70&radius=40",
+							"protocol": "http",
+							"host": [
+								"{{local base url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"measurements",
+								"stats-within-area"
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "70"
+								},
+								{
+									"key": "longitude",
+									"value": "70"
+								},
+								{
+									"key": "radius",
+									"value": "40"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
