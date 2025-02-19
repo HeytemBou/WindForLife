@@ -8,8 +8,8 @@ WORKDIR /app
 RUN pip install --no-cache-dir poetry
 
 # Copy the project files
-COPY pyproject.toml poetry.lock ./
-COPY . .
+COPY ../pyproject.toml ../poetry.lock /app/
+COPY .. /app/
 
 # Install dependencies using Poetry
 RUN poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi

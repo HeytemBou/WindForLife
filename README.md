@@ -1,51 +1,27 @@
 # WindForLife POC
-## Endpoints
 
+## Endpoints served by DRF in this project
 ### Authentication
-- `POST /api/auth/login/` - User login
-- `POST /api/auth/register/` - User registration
-- `POST /api/auth/logout/` - User logout
+- `POST /api/v1/sign-up/` 
+- `POST /api/v1/sign-in/` 
 
-### User
-- `GET /api/user/profile/` - Get user profile
-- `PUT /api/user/profile/` - Update user profile
+### Anemometers
+- `GET /api/v1/anemometers/`
+- `POST /api/v1/anemometers/`
+- `PUT /api/v1/anemometers/<id>`
+- `DELETE /api/v1/anemometers/<id>`
+- `POST /api/v1/anemometers/<id>/measurements`
+- `GET /api/v1/anemometers/<id>/measurements`
 
-### Wind Data
-- `GET /api/wind/` - Get wind data
-- `POST /api/wind/` - Add new wind data
-- `PUT /api/wind/{id}/` - Update wind data
-- `DELETE /api/wind/{id}/` - Delete wind data
+### Measurements
+- `GET /api/v1/measurements/wind-speed-stats`
+- `GET /api/v1/measurements/filter-by-tags`
+- `GET /api/v1/measurements/stats-within-area`
+
+## Testing
+For testing these endpoints locally, you can import the provided postman collection in the folder postman-colletion.
 
 ## Running the Project
-
-### Using Virtual Environment
-
-1. Create a virtual environment:
-    ```bash
-    python -m venv venv
-    ```
-2. Activate the virtual environment:
-    - On Windows:
-        ```bash
-        venv\Scripts\activate
-        ```
-    - On macOS/Linux:
-        ```bash
-        source venv/bin/activate
-        ```
-3. Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. Apply migrations:
-    ```bash
-    python manage.py migrate
-    ```
-5. Run the development server:
-    ```bash
-    python manage.py runserver
-    ```
-
 ### Using Poetry
 
 1. Install Poetry if you haven't already:
@@ -69,10 +45,10 @@
 
 1. Build the Docker image:
     ```bash
-    docker build -t windforlife .
+    docker build -t deployment/dev/ .
     ```
 2. Run the Docker container:
     ```bash
-    docker run -p 8000:8000 windforlife
+    docker run -p 8000:8000 windforlifePOC
     ```
 
