@@ -49,7 +49,7 @@ For testing these endpoints locally, you can import the provided postman collect
 
 1. Build the Docker image:
     ```bash
-    docker build -t deployment/dev/ .
+    docker build -f deployment/dev/Dockerfile -t my-image .
     ```
 2. Run the Docker container:
     ```bash

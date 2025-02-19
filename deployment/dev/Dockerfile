@@ -12,7 +12,8 @@ COPY ../pyproject.toml ../poetry.lock /app/
 COPY .. /app/
 
 # Install dependencies using Poetry
-RUN poetry config virtualenvs.create false && poetry install --no-interaction --no-ansi
+RUN poetry install --verbose && poetry shell
+
 
 # Expose port 8000 (default Django port)
 EXPOSE 8000

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "wind-for-life-project"
+name = "app"
 version = "0.1.0"
 description = ""
 authors = ["heytem"]
